@@ -39,12 +39,11 @@ server {
 EOF
   ok "HTTPS server config written: ${SSL_CONF}"
 
-  local NGINX_CONF="${NGINX_PREFIX}/conf/nginx.conf"
-  if ! grep -qE "include\s+${SERVERS_DIR}/\*.conf;" "${NGINX_CONF}"; then
+  # Ensure servers/*.conf is included (use NGINX_CONF from common.sh)
+  if ! grep -qE "include[[:space:]]+${SERVERS_DIR}/\\*\\.conf;" "${NGINX_CONF}"; then
     info "Adding include directive for server configs to nginx.conf"
-    # Insert include line inside http {} block
-    awk '
-      $0 ~ /http\s*{/ { print; print "    include '"${SERVERS_DIR}"'/*.conf;"; next }
+    /usr/bin/awk -v inc="    include ${SERVERS_DIR}/*.conf;" '
+      !done && $0 ~ /^[[:space:]]*http[[:space:]]*\{[[:space:]]*$/ { print; print inc; done=1; next }
       { print }
     ' "${NGINX_CONF}" > "${NGINX_CONF}.tmp" && mv "${NGINX_CONF}.tmp" "${NGINX_CONF}"
     ok "Include directive added to nginx.conf"
@@ -52,11 +51,5 @@ EOF
     info "Include directive for server configs already present in nginx.conf"
   fi
 
-  info "Restarting nginx service"
-  if [[ "${ENABLE_SSL}" == "true" ]] && sudo lsof -i :443 >/dev/null 2>&1; then
-    sudo brew services restart nginx
-  else
-    brew services restart nginx
-  fi
-  ok "nginx service restarted"
+  # Note: do not restart here; install.sh handles start/restart sequencing.
 }

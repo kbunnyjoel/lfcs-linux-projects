@@ -25,6 +25,8 @@ brew_prefix() {
 }
 
 HOMEBREW_PREFIX="$(brew_prefix)"
+# Path prefix to the nginx formula (e.g., /opt/homebrew/opt/nginx)
+NGINX_PREFIX="$(brew --prefix nginx 2>/dev/null || echo "${HOMEBREW_PREFIX}/opt/nginx")"
 NGINX_ETC="${HOMEBREW_PREFIX}/etc/nginx"
 NGINX_CONF="${NGINX_ETC}/nginx.conf"
 SERVERS_DIR="${NGINX_ETC}/servers"
