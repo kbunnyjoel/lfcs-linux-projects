@@ -1,0 +1,6 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "Run backup.sh", "type": "shell", "command": "./03-backup-cron/backup.sh" }
+  ]
+}

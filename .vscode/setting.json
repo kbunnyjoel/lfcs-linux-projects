@@ -1,0 +1,7 @@
+{
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "files.exclude": {
+    "**/.DS_Store": true
+  },
+  "editor.formatOnSave": true
+}
