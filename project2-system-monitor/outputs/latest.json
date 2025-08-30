@@ -1,0 +1,51 @@
+{
+  "TIMESTAMP": "2025-08-30T01:32:58+0000"
+,
+  "CPU_USAGE": "3"
+,
+  "CPU_CORES": "8"
+,
+  "MEM_TOTAL_MB": "7838"
+,
+  "MEM_USED_MB": "1352"
+,
+  "MEM_FREE_MB": "6486"
+,
+  "DISK_FS": "overlay"
+,
+  "DISK_USED": "42"
+,
+  "DISK_SIZE": "59G"
+,
+  "LOAD_1": "2.41"
+,
+  "LOAD_5": "2.58"
+,
+  "LOAD_15": "2.53"
+,
+  "PROC_nginx_RUNNING": "0"
+,
+  "PROC_sshd_RUNNING": "0"
+,
+  "TOP_PROCS_TS": "2025-08-30T01:32:59+0000"
+,
+  "TOP_CPU_1": "pid:460,pcpu:0.9,pmem:0.0,rss_kb:3452,vsz_kb:4680,cmd:bash"
+,
+  "TOP_CPU_2": "pid:1,pcpu:0.1,pmem:0.2,rss_kb:18772,vsz_kb:26796,cmd:python3"
+,
+  "TOP_CPU_3": "pid:508,pcpu:0.0,pmem:0.0,rss_kb:3432,vsz_kb:7980,cmd:ps"
+,
+  "TOP_CPU_4": "pid:509,pcpu:0.0,pmem:0.0,rss_kb:2340,vsz_kb:4680,cmd:bash"
+,
+  "TOP_CPU_5": "pid:510,pcpu:0.0,pmem:0.0,rss_kb:3120,vsz_kb:6172,cmd:awk"
+,
+  "TOP_MEM_1": "pid:1,pcpu:0.1,pmem:0.2,rss_kb:18772,vsz_kb:26796,cmd:python3"
+,
+  "TOP_MEM_2": "pid:460,pcpu:0.9,pmem:0.0,rss_kb:3452,vsz_kb:4680,cmd:bash"
+,
+  "TOP_MEM_3": "pid:511,pcpu:0.0,pmem:0.0,rss_kb:3432,vsz_kb:7980,cmd:ps"
+,
+  "TOP_MEM_4": "pid:513,pcpu:0.0,pmem:0.0,rss_kb:3120,vsz_kb:6308,cmd:awk"
+,
+  "TOP_MEM_5": "pid:512,pcpu:0.0,pmem:0.0,rss_kb:2340,vsz_kb:4680,cmd:bash"
+}
