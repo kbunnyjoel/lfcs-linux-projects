@@ -1,0 +1,4 @@
+# Enable some extra checks and treat sourced files as in tree
+enable=all
+source-path=src:src/lib
+exclude=SC1090,SC1091  # we control our source paths
