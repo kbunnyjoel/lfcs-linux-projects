@@ -1,0 +1,4 @@
+# stricter defaults for prod
+DEFAULT_SHELL=/bin/bash
+DEFAULT_GROUPS=
+LIST_FILTER=humans

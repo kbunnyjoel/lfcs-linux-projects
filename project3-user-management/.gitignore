@@ -1,0 +1,8 @@
+# editor & os
+.DS_Store
+*.swp
+*.swo
+
+# test artifacts
+coverage/
+.tmp/
