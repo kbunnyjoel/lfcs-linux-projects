@@ -1,0 +1,13 @@
+
+
+# Development environment configuration
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=devuser
+DB_PASS=devpass
+DB_NAME=devdb
+
+BACKUP_SOURCE=./tmp/src
+BACKUP_DEST=./tmp/dest
+LOG_LEVEL=debug
+RETENTION_DAYS=7

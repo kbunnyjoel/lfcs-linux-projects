@@ -1,0 +1,2 @@
+BACKUP_SRC='/tmp/bats-run-aPR9e7/test/4/p4tests.253.test_env_loading_via_-2d-2denv_works/src'
+BACKUP_DEST='/tmp/bats-run-aPR9e7/test/4/p4tests.253.test_env_loading_via_-2d-2denv_works/dst'

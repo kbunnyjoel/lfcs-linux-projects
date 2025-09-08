@@ -1,0 +1,24 @@
+
+
+# Production environment variables for backup orchestrator
+
+# Source directory to back up
+SOURCE=/data
+
+# Destination root for backups
+DEST=/backups
+
+# Backup format: tar or dir
+FORMAT=tar
+
+# Compression type: gz, zstd, or none
+COMPRESS=gz
+
+# Default label prefix for backups
+LABEL=prod
+
+# Exclude patterns (space separated, glob syntax)
+EXCLUDES="*.tmp *.cache"
+
+# Directory for logs
+LOG_DIR=/var/log/backup-orchestrator
