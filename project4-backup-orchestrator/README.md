@@ -2,7 +2,7 @@
 
 ## Overview
 
-Backup Orchestrator is a comprehensive backup management tool designed to handle full, incremental, and differential backups efficiently. It supports restoring from backup artifacts or IDs, manages backup rotation policies, and enables scheduling via cron jobs. The project generates JSON summaries, manifests, and audit logs to maintain transparency and traceability throughout the backup lifecycle. Configuration is environment-specific, supporting separate setups for development and production environments.
+Backup Orchestrator is a comprehensive backup management tool designed to handle full, incremental, and differential backups efficiently. It supports restoring from backup artifacts or IDs, manages backup rotation policies, and enables scheduling via cron jobs. The project generates JSON summaries, manifests, and audit logs to maintain transparency and traceability throughout the backup lifecycle. Configuration is environment-specific, supporting separate setups for development, production, and continuous integration environments.
 
 ## Features
 
@@ -11,7 +11,7 @@ Backup Orchestrator is a comprehensive backup management tool designed to handle
 - Rotation policies to keep the last N full or incremental backups and enforce max-age retention  
 - Scheduling of backup tasks through cron integration  
 - Generation of JSON summaries, manifests, and detailed audit logs  
-- Environment-specific configurations stored in `env/dev` and `env/prod`  
+- Environment-specific configurations stored in `env/dev`, `env/prod`, and `env/ci`  
 
 ## Folder Structure
 
@@ -27,7 +27,7 @@ outputs/
 - `src/`: Main source code for the backup orchestrator  
 - `src/lib/`: Supporting libraries and modules  
 - `tests/`: Automated test suites  
-- `env/`: Environment configuration files (`dev`, `prod`)  
+- `env/`: Environment configuration files (`dev`, `prod`, `ci`)  
 - `logs/`: Backup and audit log files  
 - `outputs/`: Backup artifacts and related output files  
 
@@ -64,6 +64,8 @@ make test
 ```
 
 Tests are written using the Bats testing framework.
+
+Note: The `ci` environment configuration file is used during automated testing to ensure consistent test environments.
 
 ## Development Notes
 
