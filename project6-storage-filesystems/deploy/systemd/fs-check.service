@@ -1,0 +1,22 @@
+[Unit]
+Description=project6 fs watchdog run
+Documentation=file:/app/README.md
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+# Run from the repo root that’s bind-mounted at /app in the systemd image
+WorkingDirectory=/app
+# Load production defaults if present; ignore if missing
+EnvironmentFile=-/etc/project6/env
+Environment=FS_ENV_FILE=/etc/project6/env
+# Ensure typical admin paths are available (findmnt, etc.)
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+# Call the real script path inside this image
+ExecStart=/usr/bin/env bash -lc '/app/src/fs.sh check --json ${FS_ARGS}'
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

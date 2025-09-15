@@ -1,0 +1,6 @@
+
+
+# <file system>         <mount point>  <type>  <options>                     <dump> <pass>
+UUID=aaaa-bbbb-cccc      /tmp           ext4    nodev,nosuid,noexec           0      0
+UUID=dddd-eeee-ffff      /var/tmp       ext4    nodev,nosuid                  0      0
+UUID=1111-2222-3333      /var/log       ext4    defaults                      0      0

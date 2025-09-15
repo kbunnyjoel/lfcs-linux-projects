@@ -1,0 +1,9 @@
+
+
+#!/usr/bin/env bash
+# Mock `lvs`-style output: LV VG Attr LSize
+# Includes one active LV and one inactive LV (with 'd' in the attr col)
+cat <<'EOF'
+vg0   lvdata   -wi-ao----  10.00g
+vg1   lvlogs   -wi-d-----   5.00g
+EOF

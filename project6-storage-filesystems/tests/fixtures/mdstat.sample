@@ -1,0 +1,11 @@
+
+
+Personalities : [raid1]
+
+# Healthy RAID1 array
+md0 : active raid1 sda1[0] sdb1[1]
+      104320 blocks super 1.2 [2/2] [UU]
+
+# Degraded RAID1 array (one failed member)
+md1 : active raid1 sdc1[0] sdd1[1](F)
+      104320 blocks super 1.2 [2/1] [U_]
