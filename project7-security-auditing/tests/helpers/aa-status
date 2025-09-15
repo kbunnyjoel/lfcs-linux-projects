@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Mock aa-status
+set -euo pipefail
+mode="${AAMODE:-on}"
+if [[ "$mode" == "on" ]]; then
+  cat <<'OUT'
+apparmor module is loaded.
+7 profiles are in enforce mode.
+OUT
+  exit 0
+else
+  echo "apparmor module is not loaded" >&2
+  exit 1
+fi
+

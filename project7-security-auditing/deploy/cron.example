@@ -1,0 +1,16 @@
+# === project7-security-auditing — cron examples ===
+# Copy relevant lines into root's crontab (sudo crontab -e) or into /etc/cron.d/project7
+
+PROJECT_DIR=/opt/project7
+ENV_FILE=/etc/project7/env
+
+# Every 10 minutes: Security checks (firewall, selinux/apparmor, audit, auth)
+*/10 * * * * root . "$ENV_FILE" 2>/dev/null; \
+  "$PROJECT_DIR/src/sec.sh" check ${SEC_ARGS:-"--json"} \
+  >>/var/log/project7/sec-check.log 2>&1
+
+# Nightly @ 01:20: Audit rules compliance with a specific file
+20 1 * * * root . "$ENV_FILE" 2>/dev/null; \
+  "$PROJECT_DIR/src/sec.sh" check --json --audit rules /etc/audit/rules.d/hardening.rules \
+  >>/var/log/project7/sec-check.log 2>&1
+

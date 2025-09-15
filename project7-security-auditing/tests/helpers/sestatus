@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Mock sestatus output driven by SELINUXMODE
+set -euo pipefail
+mode="${SELINUXMODE:-enforcing}"
+case "$mode" in
+  enforcing)
+    cat <<'OUT'
+SELinux status:                 enabled
+Current mode:                   enforcing
+OUT
+    ;;
+  permissive)
+    cat <<'OUT'
+SELinux status:                 enabled
+Current mode:                   permissive
+OUT
+    ;;
+  disabled)
+    cat <<'OUT'
+SELinux status:                 disabled
+OUT
+    ;;
+  *)
+    echo "unknown SELINUXMODE: $mode" >&2; exit 1
+    ;;
+esac
+

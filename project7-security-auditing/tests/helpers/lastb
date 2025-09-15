@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Mock lastb with a simple --count interface returning numeric failed logins in 24h
+set -euo pipefail
+count="${AUTHMODE:-0}"
+if [[ "${1:-}" == "--count" ]]; then
+  echo "$count"
+  exit 0
+fi
+for ((i=0;i<${count};i++)); do echo "user ttyX $(date -u)"; done
+

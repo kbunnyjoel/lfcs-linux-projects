@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Mock nft binary for firewall fallback tests
+# Control via NFTMODE=on|off
+set -euo pipefail
+mode="${NFTMODE:-on}"
+sub1="${1:-}"
+sub2="${2:-}"
+if [[ "$sub1" == "list" && "$sub2" == "ruleset" ]]; then
+  if [[ "$mode" == "on" ]]; then
+    cat <<'OUT'
+table inet filter {
+    chain input { type filter hook input priority 0; policy drop; }
+}
+OUT
+    exit 0
+  else
+    # Empty/disabled
+    exit 0
+  fi
+fi
+echo "unsupported usage" >&2
+exit 2
+

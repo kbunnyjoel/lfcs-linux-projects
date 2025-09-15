@@ -1,0 +1,4 @@
+# Minimal required audit rules for the mock tests
+-w /etc/passwd -p wa -k identity
+-w /etc/shadow -p wa -k identity
+
