@@ -1,0 +1,22 @@
+[Unit]
+Description=project7 security watchdog run
+Documentation=file:/app/README.md
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+# Run from repo root bind-mounted at /app (if using a systemd container) or adjust WorkingDirectory
+WorkingDirectory=/app
+# Load production defaults if present; ignore if missing
+EnvironmentFile=-/etc/project7/env
+# Ensure env file is also discoverable within the process
+Environment=SEC_ENV_FILE=/etc/project7/env
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/usr/bin/env bash -lc '/app/src/sec.sh check ${SEC_ARGS}'
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Mock getenforce
+set -euo pipefail
+mode="${SELINUXMODE:-enforcing}"
+case "$mode" in
+  enforcing) echo Enforcing ;;
+  permissive) echo Permissive ;;
+  disabled) echo Disabled ;;
+  *) echo "unknown SELINUXMODE: $mode" >&2; exit 1 ;;
+esac
+

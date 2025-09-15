@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Mock firewall controller: emulate `firewall-cmd --state` style
+set -euo pipefail
+mode="${FIREWALLMODE:-on}"
+subcmd="${1:-state}"
+case "$mode" in
+  on)
+    if [[ "$subcmd" == "state" ]]; then echo running; exit 0; fi
+    ;;
+  off)
+    if [[ "$subcmd" == "state" ]]; then echo stopped; exit 1; fi
+    ;;
+  *) echo "unknown FIREWALLMODE: $mode" >&2; exit 2 ;;
+esac
+

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Mock auditctl -l
+set -euo pipefail
+mode="${AUDITMODE:-ok}"
+case "$mode" in
+  ok)
+    cat <<'OUT'
+-w /etc/passwd -p wa -k identity
+-w /etc/shadow -p wa -k identity
+OUT
+    ;;
+  missing)
+    cat <<'OUT'
+-w /var/log/secure -p wa -k logsecure
+OUT
+    ;;
+  empty)
+    # no output, success
+    ;;
+  *) echo "unknown AUDITMODE: $mode" >&2; exit 1 ;;
+esac
+

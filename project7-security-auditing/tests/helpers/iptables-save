@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Mock iptables-save for firewall fallback tests
+# Control via IPTMODE=on|off
+set -euo pipefail
+mode="${IPTMODE:-on}"
+if [[ "$mode" == "on" ]]; then
+  printf '*filter\n:INPUT DROP [0:0]\n:FORWARD DROP [0:0]\n:OUTPUT ACCEPT [0:0]\n-A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT\n-A INPUT -p tcp --dport 22 -j ACCEPT\nCOMMIT\n'
+  exit 0
+else
+  printf '*filter\n:INPUT ACCEPT [0:0]\n:FORWARD ACCEPT [0:0]\n:OUTPUT ACCEPT [0:0]\nCOMMIT\n'
+  exit 0
+fi
+

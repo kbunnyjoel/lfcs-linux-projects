@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Mock aide
+# Modes:
+#  AIDEMODE=ok       -> exit 0, no changes
+#  AIDEMODE=changed  -> exit 1, shows counts
+#  AIDEMODE=error    -> exit 2, no output
+
+set -euo pipefail
+mode="${AIDEMODE:-ok}"
+
+case "$mode" in
+  ok)
+    cat <<'OUT'
+AIDE found no changes.
+Added entries: 0
+Removed entries: 0
+Changed entries: 0
+OUT
+    exit 0
+    ;;
+  changed)
+    cat <<'OUT'
+AIDE found changes!
+Added entries: 2
+Removed entries: 1
+Changed entries: 3
+OUT
+    exit 1
+    ;;
+  error)
+    exit 2
+    ;;
+  *)
+    echo "unknown AIDEMODE: $mode" >&2; exit 3
+    ;;
+esac
+
