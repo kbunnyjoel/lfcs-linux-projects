@@ -202,14 +202,13 @@ This disables the strict mount option check inside the container, allowing the s
 
 ## Sprint Roadmap (Future Work)
 
-### Sprint 1 – Scaffold & Basic Health Check
+### Sprint 1 – Scaffold & Basic Health Check ✅
 - Scaffold project layout and repo structure
 - Implement minimal CLI: `fs.sh check --path`
 - Define JSON output schema and exit codes (0: healthy, 1: unhealthy, 2: usage error)
 - Add basic Bats tests for healthy/unhealthy path and JSON output  
-✅ Completed in this project.
 
-### Sprint 2 – Multi-Path Monitoring & Environment Defaults
+### Sprint 2 – Multi-Path Monitoring & Environment Defaults ✅
 
 **Goal:** Enable multiple path checks and support environment variable defaults.
 
@@ -225,17 +224,17 @@ This disables the strict mount option check inside the container, allowing the s
 - Multiple runs with same inputs produce consistent results.
 - Bats tests cover: all healthy, some unhealthy, env vs CLI, aggregate status correctness.
 
-### Sprint 3 – Disk Space & Inode Usage
+### Sprint 3 – Disk Space & Inode Usage ✅
 - Check free disk space and inode availability thresholds.
 - Report warnings if usage exceeds limits.
 - Example: Alert if `/var` partition exceeds 90% disk usage.
 
-### Sprint 4 – Filesystem Type & Mount Status
+### Sprint 4 – Filesystem Type & Mount Status ✅
 - Verify filesystem types (e.g., ext4, xfs) and mount status.
 - Detect unmounted or remounted filesystems.
 - Example: Ensure `/mnt/backup` is mounted as expected before backup jobs.
 
-### Sprint 5 – LVM & RAID Awareness
+### Sprint 5 – LVM & RAID Awareness ✅
 - Simulate LVM and RAID configurations.
 - Detect degraded RAID arrays or LVM volume issues.
 - Integrate with real LVM/MD tools if available.
@@ -244,18 +243,18 @@ This disables the strict mount option check inside the container, allowing the s
 
 ---
 
-### Sprint 6 – Snapshot & Backup Validation
+### Sprint 6 – Snapshot & Backup Validation ✅
 - Check for presence and freshness of filesystem snapshots or backups.
 - Validate backup mount points and access.
 - Example: Verify daily snapshots exist and are accessible in `/snapshots`.
 - Snapshot tests rely on ephemeral directories created in Docker and will fail if run outside the expected environment setup.
 
-### Sprint 7 – Quotas & ACL Awareness
+### Sprint 7 – Quotas & ACL Awareness ✅
 - Detect user or group quotas on monitored paths.
 - Validate ACLs to ensure correct permissions.
 - Example: Alert if a user exceeds quota or ACLs restrict critical access.
 
-### Sprint 8 – Performance Metrics & Historical Reporting
+### Sprint 8 – Performance Metrics & Historical Reporting ✅
 - Collect IO stats, latency, and throughput over time.
 - Generate historical reports and trends.
 - Example: Report if disk IO latency exceeds thresholds over past 24h.
