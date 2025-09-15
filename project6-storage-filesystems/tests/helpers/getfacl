@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Mock getfacl. Usage: getfacl <path>
+# Controls:
+#   ACLMODE=ok        -> includes required entries
+#   ACLMODE=missing   -> omits one or more entries
+
+set -euo pipefail
+aclm="${ACLMODE:-ok}"
+
+case "$aclm" in
+  ok)
+    # Include common lines plus the two expected rules
+    cat <<'OUT'
+# file: mock
+# owner: root
+# group: root
+user::rwx
+group::r-x
+other::r-x
+user:app:rwx
+default:user:backup:r-x
+OUT
+    ;;
+  missing)
+    # Deliberately omit one of the expected entries
+    cat <<'OUT'
+# file: mock
+# owner: root
+# group: root
+user::rwx
+group::r-x
+other::r-x
+user:app:rwx
+OUT
+    ;;
+  *)
+    echo "unknown ACLMODE: $aclm" >&2; exit 1
+    ;;
+esac

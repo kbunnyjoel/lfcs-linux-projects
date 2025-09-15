@@ -1,0 +1,26 @@
+# === project6-storage-filesystems — cron examples ===
+# Copy relevant lines into root's crontab (sudo crontab -e) or into /etc/cron.d/project6
+# Adjust paths to where you install the repo and your target paths.
+
+# Base directory of this repo on the host:
+PROJECT_DIR=/opt/project6
+
+# Optional: central env file to tweak thresholds/fstab expectations without editing crontab
+# e.g., FS_EXPECT_OPTS="/var/backups:nodev,nosuid,noexec"
+ENV_FILE=/etc/project6/env
+
+# 1) Every 5 minutes: general health on /var and /tmp
+*/5 * * * * root . "$ENV_FILE" 2>/dev/null; \
+  "$PROJECT_DIR/src/fs.sh" check \
+    --path /var --path /tmp --json \
+  >>/var/log/project6/fs-check.log 2>&1
+
+# 2) Nightly @ 01:10: snapshot freshness under /var/backups/snapshots
+10 1 * * * root . "$ENV_FILE" 2>/dev/null; \
+  "$PROJECT_DIR/src/fs.sh" check \
+    --path /var/backups \
+    --json \
+    --snapshot-dir /var/backups/snapshots \
+    --pattern '^backup-([0-9]{8})$' \
+    --max-age 86400 \
+  >>/var/log/project6/fs-check.log 2>&1

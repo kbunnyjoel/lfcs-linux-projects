@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Mock repquota. Usage: repquota <mountpoint>
+# Controls:
+#   REPMODE=ok         -> under limits (no "over" keyword)
+#   REPMODE=exceeded   -> over limits (contains "over")
+#   REPMODE=empty      -> simulate tool present but no output
+
+set -euo pipefail
+mode="${REPMODE:-ok}"
+
+case "$mode" in
+  ok)
+    cat <<'OUT'
+Filesystem quotas for / (user quota):
+ user testuser: used 1000 blocks of 100000, limits ok
+OUT
+    ;;
+  exceeded)
+    cat <<'OUT'
+Filesystem quotas for / (user quota):
+ user testuser: used 200000 blocks of 100000 (over), limits exceeded
+OUT
+    ;;
+  empty)
+    # no output, non-error exit to simulate ambiguous tool presence
+    ;;
+  *)
+    echo "unknown mode: $mode" >&2; exit 1
+    ;;
+esac
